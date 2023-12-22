@@ -134,14 +134,19 @@ class WebSocketChannel extends StreamChannelMixin {
   /// communicate over the resulting socket.
   ///
   /// The optional [protocols] parameter is the same as `WebSocket.connect`.
+  /// The optional [headers] parameter is the same as `WebSocket.connect`(IO).
   ///
   /// A WebSocketChannel is returned synchronously, however the connection is
   /// not established synchronously.
   /// The [ready] future will complete after the channel is connected.
   /// If there are errors creating the connection the [ready] future will
   /// complete with an error.
-  factory WebSocketChannel.connect(Uri uri, {Iterable<String>? protocols}) =>
-      platform.connect(uri, protocols: protocols);
+  factory WebSocketChannel.connect(
+    Uri uri, {
+    Iterable<String>? protocols,
+    Map<String, String>? headers,
+  }) =>
+      platform.connect(uri, protocols: protocols, headers: headers);
 }
 
 /// The sink exposed by a [WebSocketChannel].
